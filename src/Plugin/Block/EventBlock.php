@@ -2,6 +2,7 @@
 
 namespace Drupal\event_block\Plugin\Block;
 
+use Drupal;
 use Drupal\Core\Block\BlockBase;
 
 /**
@@ -22,15 +23,17 @@ use Drupal\Core\Block\BlockBase;
  * If the event is going to happen on the current day display 'This event is happening today'.
  * If the event has ended, display ‘This event already passed.’.
  */
-class EventBlock extends BlockBase {
+class EventBlock extends BlockBase
+{
 
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function build()
+  {
     // Get Title of Block's parent Node.
-    $node = \Drupal::routeMatch()->getParameter('node');
-    $service = \Drupal::service('event_block.event_services');
+    $node = Drupal::routeMatch()->getParameter('node');
+    $service = Drupal::service('event_block.event_services');
     $days = $service->daysUntilEvent(date("Y-m-d", strtotime($node->get("field_event_date")->value)));
 
     switch ($days) {
@@ -55,7 +58,8 @@ class EventBlock extends BlockBase {
   /**
    * {@inheritdoc}
    */
-  public function getCacheMaxAge() {
+  public function getCacheMaxAge()
+  {
     return 0;
   }
 

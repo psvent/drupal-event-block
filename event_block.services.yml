@@ -1,4 +1,4 @@
 services:
   event_block.event_services:
     class: Drupal\event_block\Services\EventService
-    arguments: []
+    arguments: [ ]
