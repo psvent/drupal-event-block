@@ -1,0 +1,6 @@
+name: Event Block Module
+description: Creates a custom block displays how many days are left until an event starts
+package: Custom
+type: module
+version: 1.0
+core: 8.x
