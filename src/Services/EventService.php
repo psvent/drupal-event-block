@@ -17,10 +17,10 @@ class EventService {
 
   public function daysUntilEvent($date) {
     $today = new DateTime(date("Y-m-d"));
-    $d2 = new DateTime($date);
-    $interval = $d2->diff($today);
+    $event_date = new DateTime($date);
+    $interval = $event_date->diff($today);
 
-    if ($d2<$today) {
+    if ($event_date<$today) {
       return -1;
     }
 

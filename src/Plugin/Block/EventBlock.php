@@ -30,10 +30,10 @@ class EventBlock extends BlockBase {
   public function build() {
     // Get Title of Block's parent Node.
     $node = \Drupal::routeMatch()->getParameter('node');
-    $s = \Drupal::service('event_block.event_services');
-    $d = $s->daysUntilEvent(date("Y-m-d", strtotime($node->get("field_event_date")->value)));
+    $service = \Drupal::service('event_block.event_services');
+    $days = $service->daysUntilEvent(date("Y-m-d", strtotime($node->get("field_event_date")->value)));
 
-    switch ($d) {
+    switch ($days) {
       case -1:
         $text = "The event has already passed.";
         break;
@@ -44,7 +44,7 @@ class EventBlock extends BlockBase {
         $text = "1 day left until event starts.";
         break;
       default:
-        $text = "$d days left until event starts.";
+        $text = "$days days left until event starts.";
     }
 
     return [
